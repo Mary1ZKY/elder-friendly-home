@@ -1,21 +1,36 @@
 const form = document.querySelector('#lead-form');
-const status = document.querySelector('.form-status');
-const formNotice = document.createElement('p');
-formNotice.className = 'form-status';
-formNotice.textContent = '此表单为演示，暂不接收、发送或保存留言。';
-form.prepend(formNotice);
+const formStatus = document.querySelector('.form-status');
 document.querySelectorAll('[data-demand]').forEach((card) => {
   card.addEventListener('click', () => {
     const select = form.elements.demand;
     if (select) select.value = card.dataset.demand;
   });
 });
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const name = form.elements.name.value.trim();
   const demand = form.elements.demand.value;
-  status.textContent = `感谢${name || '你'}愿意分享${demand || '家中的情况'}。这是页面演示：表单尚未接入后台，不会保存或发送联系方式。正式上线前请连接企业邮箱、CRM 或安全的表单服务。`;
-  form.reset();
+  const city = form.elements.city.value.trim();
+  const message = form.elements.message.value.trim();
+  if (!demand && !message) {
+    formStatus.textContent = '先选一个想聊的话题，或写一点家中的情况。';
+    return;
+  }
+  const summary = [
+    '居家改善需求',
+    `想聊：${demand || '家中的情况'}`,
+    name && `称呼：${name}`,
+    city && `城市：${city}`,
+    message && `家中情况：${message}`,
+    '咨询电话：19295319008',
+    `官网：${location.origin}${location.pathname}`,
+  ].filter(Boolean).join('\n');
+  try {
+    await navigator.clipboard.writeText(summary);
+    formStatus.textContent = '需求已复制。您可以粘贴发送给家人或联系人，也可以拨打 19295319008，照着这份提纲慢慢聊。';
+  } catch (error) {
+    formStatus.textContent = `可以选中以下内容手动复制，或直接拨打 19295319008：\n\n${summary}`;
+  }
 });
 
 const revealTargets = document.querySelectorAll('.industry-card, .service-card, .keyword-groups article, .proof-copy, .contact-panel');
