@@ -1,0 +1,32 @@
+.industries { background: #f5f4ed; }
+.industry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.industry-card { display: flex; flex-direction: column; min-height: 485px; padding: 24px; color: var(--ink); border: 1px solid var(--line); transition: transform .25s, box-shadow .25s; }
+.industry-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(17,21,20,.1); }
+.home-service { background: #e3e8d8; }
+.care-service { background: #d9e7e9; }
+.geo-service { background: #e7e0d2; }
+.industry-no { font: 10px 'DM Mono'; letter-spacing: .06em; opacity: .55; }
+.industry-art { height: 140px; margin: 24px 0; position: relative; overflow: hidden; display: grid; place-items: center; }
+.industry-art span { font: 500 52px var(--serif); font-style: italic; z-index: 1; }
+.industry-art i, .industry-art b { position: absolute; border-radius: 50%; border: 1px solid currentColor; opacity: .35; }
+.art-home i { width: 180px; height: 80px; transform: rotate(-25deg); }
+.art-home b { width: 100px; height: 100px; right: 14%; top: 8%; background: #b2bd94; border: 0; opacity: .65; }
+.art-care i { width: 210px; height: 90px; transform: rotate(28deg); }
+.art-care b { width: 95px; height: 95px; left: 14%; bottom: 0; background: #abcdd0; border: 0; opacity: .7; }
+.art-geo i { width: 165px; height: 165px; }
+.art-geo b { height: 1px; width: 80%; background: var(--ink); border: 0; opacity: .25; }
+.industry-card h3 { font-size: 23px; letter-spacing: -.05em; margin: 0 0 10px; }
+.industry-card p { font-size: 13px; line-height: 1.75; color: #5e6961; margin: 0; }
+.industry-tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 auto; }
+.industry-tags span { font: 10px 'DM Mono'; padding: 6px 8px; border: 1px solid rgba(17,21,20,.25); }
+.industry-card > strong { font-size: 12px; margin-top: 22px; }
+.industry-card > strong b { font-size: 18px; margin-left: 8px; }
+.form-intro { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.form-intro b { font-size: 18px; }
+.form-intro span { font: 10px 'DM Mono'; color: #778274; }
+.contact select { font: 14px Manrope, 'Noto Sans SC'; background: transparent; border: 0; border-bottom: 1px solid #aab8a2; padding: 8px 0; outline: 0; color: #566255; }
+.contact small { color: #71806e; font-size: 10px; line-height: 1.5; }
+@media (max-width: 800px) {
+  .industry-grid { grid-template-columns: 1fr; }
+  .industry-card { min-height: 420px; }
+}
